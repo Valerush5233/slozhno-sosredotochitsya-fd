@@ -3,10 +3,19 @@
 /* сохраните в разметке и стилях класс page у тега body. Он удобен, чтобы составлять селекторы для разных цветовых тем. */
 /* Основные стили проекта. Это стили для темы, которую вы верстаете первой. */
 
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .page {
   min-block-size: 100dvb;
   padding: 10px 0 10px 0;
-  font-family: "IBM Plex mono", monospace;
+  font-family: var(--main-font-family);
   font-size: 18px;
   line-height: 1.3;
   background-color: var(--background-color);
@@ -31,6 +40,7 @@
   inset-inline-end: 0;
   border-inline-end: 1px solid var(--accent-color);
   border-block-start: 1px solid var(--accent-color);
+  transform: translate(-20px, 2px);
 }
 
 .decorated-zone::after {
@@ -42,6 +52,7 @@
   inset-inline-start: 0;
   border-inline-start: 1px solid var(--accent-color);
   border-block-end: 1px solid var(--accent-color);
+  transform: translate(20px, 0px);
 }
 
 .header {
@@ -72,32 +83,36 @@
 
 .header__theme-menu-button {
   background: transparent;
-  border: 1px solid var(--accent-color);
-  color: var(--accent-color);
-  padding: 5px 14px;
+  border: none;
+  color: var(--question-color);
+  padding: 2px 12px 3px;
   cursor: pointer;
-  font-family: inherit;
-  font-size: 17px;
+  font-family: var(--main-font-family);
+  font-size: 18px;
   line-height: 1;
   text-transform: lowercase;
-  transition: background-color 0.3s ease, color 0.3s ease,
-    border-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+.header__theme-menu-item {
+  margin-left: 4px;
 }
 
 .header__theme-menu-button_active {
   pointer-events: none;
-  background-color: var(--accent-color);
-  color: var(--background-color);
+  border: 1px solid var(--question-color);
+  color: var(--question-color);
 }
 
 .header__theme-menu-button:hover {
-  background-color: var(--accent-color);
-  color: var(--background-color);
+  border: 0.5px solid var(--question-color);
+  color: var(--question-color);
 }
 
 .header__theme-menu-button:focus-visible {
   outline: none;
-  border: 1px solid var(--text-color);
+  border: none;
+  border-bottom: 1px solid var(--question-color);
 }
 
 .header_text {
@@ -109,17 +124,19 @@
 
 .header_title {
   font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
+  color: var(--focus-color);
   text-shadow: 4px 4px 0 var(--accent-color);
   line-height: 0.95;
   padding-top: 100px;
-  margin-bottom: 70px;
+  margin-bottom: 75px;
 }
 
 .header_subtitle {
-  font-size: 17px;
+  font-size: 18px;
   line-height: 23.4px;
   letter-spacing: 0%;
   font-weight: bold;
+  margin-right: 8px;
 }
 
 .header_subtitle-text {
@@ -134,7 +151,7 @@
   right: 10px;
   width: 33px;
   height: 26px;
-  font-family: "IBM Plex Mono", monospace;
+  font-family: var(--main-font-family);
   font-size: 18px;
   font-weight: 400;
   line-height: 25px;
@@ -146,23 +163,36 @@
   display: block;
   width: 100%;
   background-color: var(--accent-color);
-  color: var(--background-color);
-  padding: 0px 5px;
+  color: var(--text-color);
+  padding: 0;
   box-sizing: border-box;
 }
 
 .section {
   display: grid;
   gap: 20px;
-  padding: 52px 0;
+  padding: 62px 0 0 0;
 }
 
 .main_title-question {
+  color: var(--question-color);
   font-size: 18px;
 }
 
 .main_title-answer {
   font-size: 18px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.picture_title-answer {
+  font-size: 18px;
+  margin-top: 0px;
+  margin-bottom: 0;
+}
+.additional_question {
+  margin-top: 18px;
+  margin-bottom: 20px;
 }
 
 .main_subtitle {
@@ -175,20 +205,29 @@
   font-size: 18px;
   margin-top: 0;
   margin-bottom: 0;
+  color: var(--subtitle-color);
 }
 
 .text-link {
-  text-decoration: underline;
+  text-decoration: none;
   text-underline-offset: 3px;
   text-shadow: 2px 2px 0 var(--accent-color);
   color: var(--text-color);
+  outline: none;
+  border: none;
 }
 
-.text-link:hover,
+.text-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  background-color: transparent;
+  border: none;
+}
+
 .text-link:focus-visible {
   outline: none;
-  background-color: var(--accent-color);
-  color: var(--background-color);
+  border: 1px solid var(--subtitle-color);
+  box-shadow: 0 0 0 1px var(--accent-color);
 }
 
 .section_images {
@@ -196,6 +235,7 @@
   flex-direction: column;
   gap: 20px;
   padding-inline: 10px;
+  margin-top: 70px;
 }
 
 .gallery {
@@ -217,18 +257,20 @@
   align-items: flex-end;
   gap: 20px;
   max-width: 648px;
+  margin-top: 18px;
 }
 
 .section_columns_three {
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
+  padding-top: 5px;
 }
 
 .section_columns_five {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 10px;
   justify-items: start;
   justify-self: start;
   width: 100%;
@@ -236,11 +278,14 @@
   margin: 0;
 }
 
+.section_columns_five .main_text {
+  margin-bottom: 10px;
+}
+
 .section_columns_five .main_section {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
   padding: 0;
   margin: 0;
 }
@@ -254,14 +299,17 @@
 .footer {
   display: grid;
   place-items: center;
-  padding: 40px 0;
+  padding: 0;
   min-height: 100vh;
+  margin: 77px 0 0 0;
 }
 
 .footer_title {
   font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
+  color: var(--focus-color);
   text-shadow: 4px 4px 0 var(--accent-color);
   line-height: 0.95;
+  margin: 0;
 }
 
 @media (width >= 768px) {
@@ -340,17 +388,23 @@
     display: flex;
     flex-direction: row;
     gap: 10px;
-    margin-top: 0;
+    margin-top: 3px;
     margin-bottom: 50px;
+    margin-left: 6px;
   }
   .header_text {
     grid-column: 1 / -1;
     align-self: start;
   }
 
+  .header_subtitle-text {
+    max-inline-size: 490px;
+  }
+
   .header_title {
     font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
     line-height: 0.825;
+    letter-spacing: 0%;
   }
 
   .section {
@@ -367,7 +421,7 @@
   .gallery {
     grid-template-columns: repeat(3, 1fr);
     grid-auto-flow: dense;
-    gap: 10px;
+    gap: 20px;
   }
 
   .gallery_item:nth-child(1) {
@@ -397,7 +451,7 @@
 
   .section_align-right {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 2.05fr;
     align-items: start;
     gap: 20px;
   }
