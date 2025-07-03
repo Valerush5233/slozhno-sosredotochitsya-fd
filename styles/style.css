@@ -240,7 +240,7 @@
 }
 
 .text-link:focus-visible {
-  outline: 1px solid var(--accent-color);
+  outline: 1px solid var(--subtitle-color);
   outline-offset: 2px;
 }
 
@@ -274,7 +274,8 @@
   place-items: center;
   padding: 10px;
   margin-top: 41px;
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 668px;
 }
 
 .footer_title {
@@ -418,6 +419,7 @@
   }
 
   .footer {
+    min-height: 1024px;
     margin-top: 60px;
   }
 
@@ -430,21 +432,18 @@
 @media (width >= 1024px) {
   .header {
     display: block;
-    height: auto;
     min-height: 768px;
     padding: 20px 20px 20px 1px;
     margin: 0;
   }
 
   .header__theme-menu {
-    display: flex;
     justify-content: center;
     flex-direction: row;
     margin-left: 17px;
   }
 
   .header__theme-menu-list {
-    display: flex;
     padding: 0;
     margin: 0;
     flex-direction: row;
@@ -474,15 +473,7 @@
   }
 
   .section_align {
-    display: grid;
     grid-template-columns: 1fr 2.05fr;
-    align-items: start;
-    margin-top: 60px;
-    gap: 20px;
-  }
-
-  .main_title-question {
-    margin: 0;
   }
 
   .main_title-answer {
@@ -493,10 +484,6 @@
     margin-bottom: 15px;
   }
 
-  .main_subtitle {
-    margin-top: 5px;
-  }
-
   .main_text {
     margin-top: 0;
     margin-bottom: 20px;
@@ -504,7 +491,6 @@
 
   .main_title-concentration-question {
     max-width: 300px;
-    margin-top: 60px;
   }
 
   .section_align_concentration {
@@ -536,11 +522,6 @@
 
   .section_images {
     padding-inline: 20px;
-  }
-
-  .gallery {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
   }
 
   .gallery_item:nth-child(1) {
